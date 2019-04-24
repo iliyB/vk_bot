@@ -7,17 +7,16 @@ now=datetime.datetime.now()
 
 token="2e206344c6f275c520ace5c8f856f61b4dc8f1833142dc767a7c6a96a42e44c4c252213434609c431cf13" 
 N_message=1
-
 def write_message(user_id,message):
 	global N_message
 	tim=now.hour*100 + now.minute+now.second
-	if message=="Приезжай":
-		vk.method('messages.send', {'user_id': user_id, 'message': message,'random_id': tim+N_message})
+	if message[1]:
+		vk.method('messages.send', {'user_id': user_id, 'message': message[0],'random_id': tim+N_message})
 		N_message+=1
-		vk.method('messages.send', {'user_id': user_id, 'message': message,'random_id':tim+N_message,'sticker_id':53})
+		vk.method('messages.send', {'user_id': user_id, 'message': message[0],'random_id':tim+N_message,'sticker_id':message[1]})
 		N_message+=1
 	else:
-		vk.method('messages.send', {'user_id': user_id, 'message': message,'random_id':tim+N_message})
+		vk.method('messages.send', {'user_id': user_id, 'message': message[0],'random_id':tim+N_message})
 		N_message+=1
 	
 

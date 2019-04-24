@@ -10,7 +10,7 @@ class VkBot:
         self._USER_ID = user_id
         self._USERNAME = self._get_user_name_from_vk_id(user_id)
 
-        self._COMMANDS = ["ПРИВЕТ", "ПОГОДА", "ВРЕМЯ", "ПОКА","ХОЧУ ДОМОЙ","ЕДА","КОМАНДЫ"]
+        self._COMMANDS = ["ПРИВЕТ", "ПОГОДА", "ВРЕМЯ", "ПОКА","ХОЧУ ДОМОЙ","ЕДА","КОМАНДЫ", "ЕГОР"]
 
     def _get_user_name_from_vk_id(self, user_id):
         request = requests.get("https://vk.com/id"+str(user_id))
@@ -32,29 +32,32 @@ class VkBot:
 
         # Привет
         if message.upper() == self._COMMANDS[0]:
-            return f"Привет, {self._USERNAME}"
+            return [f"Привет, {self._USERNAME}",5574]
         # Погода
         elif message.upper() == self._COMMANDS[1]:
-            return self._get_weather()
+            return [self._get_weather(),None]
 
         # Время
         elif message.upper() == self._COMMANDS[2]:
-            return self._get_time()
+            return [self._get_time(),None]
 
         # Пока
         elif message.upper() == self._COMMANDS[3]:
-            return f"Пока, {self._USERNAME}!"
+            return [f"Пока, {self._USERNAME}!",None]	
 
         elif message.upper() == self._COMMANDS[4]:
-            return "Приезжай"
+            return ["Приезжай", 53]
 
         elif message.upper() == self._COMMANDS[5]:
-            return "Покушай"
+            return ["Покушай",None]
 
         elif message.upper() == self._COMMANDS[6]:
-            return self.all_commands()
+            return [self.all_commands(),None]
+
+        elif message.upper() == self._COMMANDS[7]:
+            return ["СОСАТЬ", 6312]
         else:
-            return "Не понимаю о чем вы..."
+            return ["Не понимаю о чем вы...",None]
 
     def _get_time(self):
         request = requests.get("https://my-calend.ru/date-and-time-today")
